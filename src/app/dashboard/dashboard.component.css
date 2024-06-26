@@ -1,0 +1,17 @@
+/* Header Background */
+.header {
+    background-color: #7fffd6;
+}
+
+/* Header Title */
+.title {
+    color: black;
+    font-weight: 700;
+    align-items: center;
+}
+
+/* Action Buttons */
+.buttons {
+    display: flex;
+    gap: 0.5rem;
+}

@@ -1,0 +1,82 @@
+<!-- Header -->
+<div class="container-fluid d-flex justify-content-between header p-2 header">
+    <h4 class="title">Upswing</h4>
+    <p-button label="Add Product" icon="pi pi-plus" styleClass="p-button-rounded p-button-help"
+        (click)="onClick()"></p-button>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <!-- Table -->
+        <p-table [value]="productData" class="p-datatable-hoverable">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>CATEGORY</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+                <tr>
+                    <td>{{row.id}}</td>
+                    <td>{{row.name}}</td>
+                    <td>{{row.price}}</td>
+                    <td>{{row.category}}</td>
+                    <td>
+                        <div class="buttons">
+                            <p-button icon="pi pi-pencil" class="p-button-info p-button-sm"
+                                (click)="onEdit(row)"></p-button>
+                            <p-button icon="pi pi-trash" styleClass="p-button-danger"
+                                (click)="deleteProduct(row)"></p-button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div class="col-md-6">
+        <!-- Bar Chart -->
+        <p-chart *ngIf="barChartData" type="bar" [data]="barChartData" [options]="barChartOptions"
+            styleClass="chart-container"></p-chart>
+    </div>
+</div>
+
+<!-- Dialog -->
+<p-dialog header="Product Details" [(visible)]="displayModal" [modal]="true" [closable]="true"
+    [style]="{width: '400px'}">
+    <form [formGroup]="productForm">
+        <div class="form-group">
+            <label class="fw-bold" for="name">Name <span class="text-danger">*</span></label>
+            <input pInputText type="text" formControlName="name" id="name" class="form-control" placeholder="Name">
+            <div class="text-danger" *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+                Please fill name.
+            </div>
+        </div>
+        <div class="form-group mt-2">
+            <label class="fw-bold" for="price">Price <span class="text-danger">*</span></label>
+            <input pInputText type="number" formControlName="price" id="price" class="form-control" placeholder="Price">
+            <div class="text-danger" *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+                Please fill price.
+            </div>
+        </div>
+        <div class="form-group mt-2">
+            <label class="fw-bold" for="category">Category <span class="text-danger">*</span></label>
+            <input pInputText type="text" formControlName="category" id="category" class="form-control"
+                placeholder="Category">
+            <div class="text-danger"
+                *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
+                Please fill category.
+            </div>
+        </div>
+        <div class="text-danger" *ngIf="errMsg">
+            Fill Mandatory Fields.
+        </div>
+    </form>
+    <p-footer>
+        <p-button label="Close" class="p-button-secondary" (click)="close()"></p-button>
+        <p-button label="Add" styleClass="p-button-success" *ngIf="!edit" (click)="postProductDetails()"></p-button>
+        <p-button label="Update" styleClass="p-button-warning" *ngIf="edit" (click)="updateProduct()"></p-button>
+    </p-footer>
+</p-dialog>

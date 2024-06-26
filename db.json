@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "price": 250000,
+      "category": "Electronic"
+    },
+    {
+      "id": 2,
+      "name": "Mobile",
+      "price": 520000,
+      "category": "Smarthphones"
+    },
+    {
+      "id": 3,
+      "name": "Furniture",
+      "price": 150000,
+      "category": "household"
+    },
+    {
+      "id": 4,
+      "name": "Bike",
+      "price": 450000,
+      "category": "Vehicle"
+    },
+    {
+      "id": 6,
+      "name": "Pulsar N160",
+      "price": 180000,
+      "category": "Bike"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
